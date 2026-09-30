@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large local-only media (host on Blob/R2 for production)
+/public/videos
+.tools
