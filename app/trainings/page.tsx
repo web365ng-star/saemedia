@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { media } from "@/lib/media";
@@ -27,10 +28,10 @@ export default function Page() {
               <div className="p-6">
                 <h2 className="text-xl font-semibold"><Link href={`/training/${t.slug}`}>{t.title}</Link></h2>
                 <p className="mt-2 text-sm text-neutral-600">{t.description}</p>
-                <p className="mt-3 text-sm">📍 {t.venue}</p>
-                <p className="mt-1 text-sm">📅 {t.days}-day class · {upcoming ? `${upcoming} upcoming batch${upcoming > 1 ? "es" : ""}` : "Next batch: to be announced"}</p>
+                <p className="mt-3 flex items-start gap-2 text-sm"><MapPin size={16} className="mt-0.5 shrink-0" aria-hidden /> {t.venue}</p>
+                <p className="mt-1 flex items-start gap-2 text-sm"><CalendarDays size={16} className="mt-0.5 shrink-0" aria-hidden /> <span>{t.days}-day class · {upcoming ? `${upcoming} upcoming batch${upcoming > 1 ? "es" : ""}` : "Next batch: to be announced"}</span></p>
                 <p className="mt-3"><span className="text-xl font-bold">{naira(t.price)}</span> <s className="ml-2 text-sm text-neutral-500">{naira(t.originalPrice)}</s></p>
-                <Link href={`/training/${t.slug}`} className="mt-5 inline-block rounded-lg bg-brand px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-brand-dark">{upcoming ? "Get Ticket →" : "View details →"}</Link>
+                <Link href={`/training/${t.slug}`} className="mt-5 inline-flex items-center gap-2 rounded-lg bg-brand px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white hover:bg-brand-dark">{upcoming ? "Get Ticket" : "View details"} <ArrowRight size={14} aria-hidden /></Link>
               </div>
             </article>
           );

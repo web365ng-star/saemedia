@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { media } from "@/lib/media";
 
 export default function Gallery({ title, images }: { title: string; images: string[] }) {
@@ -30,10 +31,10 @@ export default function Gallery({ title, images }: { title: string; images: stri
       </div>
       {open !== null && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4" onClick={() => setOpen(null)} role="dialog" aria-modal="true">
-          <button className="absolute right-5 top-4 text-3xl text-white" aria-label="Close" onClick={() => setOpen(null)}>×</button>
-          <button className="absolute left-3 text-4xl text-white" aria-label="Previous" onClick={(e) => { e.stopPropagation(); setOpen((open - 1 + items.length) % items.length); }}>‹</button>
+          <button className="absolute right-5 top-4 text-white" aria-label="Close" onClick={() => setOpen(null)}><X size={28} aria-hidden /></button>
+          <button className="absolute left-3 text-white" aria-label="Previous" onClick={(e) => { e.stopPropagation(); setOpen((open - 1 + items.length) % items.length); }}><ChevronLeft size={40} aria-hidden /></button>
           <Image src={items[open].src} alt="" width={items[open].w} height={items[open].h} sizes="100vw" className="max-h-[90vh] w-auto object-contain" onClick={(e) => e.stopPropagation()} />
-          <button className="absolute right-3 text-4xl text-white" aria-label="Next" onClick={(e) => { e.stopPropagation(); setOpen((open + 1) % items.length); }}>›</button>
+          <button className="absolute right-3 text-white" aria-label="Next" onClick={(e) => { e.stopPropagation(); setOpen((open + 1) % items.length); }}><ChevronRight size={40} aria-hidden /></button>
         </div>
       )}
     </section>

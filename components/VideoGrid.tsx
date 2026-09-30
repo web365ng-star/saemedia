@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Play } from "lucide-react";
 import { media, video } from "@/lib/media";
 import type { VideoItem } from "@/lib/site";
 
@@ -20,7 +21,7 @@ function VideoCard({ v }: { v: VideoItem }) {
               <video src={`${video(v.file)}#t=0.5`} preload="metadata" muted playsInline className="h-full w-full object-cover" />
             )}
             <span className="absolute inset-0 flex items-center justify-center bg-black/25 transition group-hover:bg-black/10">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-xl text-black">▶</span>
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-black"><Play size={22} fill="currentColor" className="ml-0.5" aria-hidden /></span>
             </span>
           </button>
         )}

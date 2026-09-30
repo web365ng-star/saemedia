@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 import SocialCta from "@/components/SocialCta";
 import { media } from "@/lib/media";
@@ -10,7 +11,7 @@ const SERVICES = [
   { label: "Videography", href: "/videography", img: "2025/09/Videography.png" },
   { label: "Animation", href: "/animation", img: "2025/09/Animation.png" },
   { label: "Training", href: "/trainings", img: "2025/09/Tranings.png" },
-  { label: "Rentals", href: "/bookings", img: "2025/09/Rental.png" },
+  { label: "Rentals", href: whatsappLink("Hello SAE Media, I'd like to enquire about studio space and equipment rentals."), img: "2025/09/Rental.png", external: true },
   { label: "Web Development", href: whatsappLink("Hello SAE Media, I'd like to enquire about web development."), img: "2025/09/Untitled-1.png", external: true },
 ];
 
@@ -44,7 +45,7 @@ export default function Home() {
         <div className="columns-2 gap-3 sm:columns-3 lg:columns-4 [&>*]:mb-3">
           {gallery.map((g) => { const m = media(g); return <Image key={g} src={m.src} alt="SAE Media portfolio" width={m.w} height={m.h} sizes="(min-width:1024px) 25vw, 50vw" className="h-auto w-full rounded-md" loading="lazy" />; })}
         </div>
-        <div className="mt-8 text-center"><Link href="/photography" className="text-sm font-semibold text-brand hover:underline">See the full photography portfolio →</Link></div>
+        <div className="mt-8 text-center"><Link href="/photography" className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline">See the full photography portfolio <ArrowRight size={14} aria-hidden /></Link></div>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-14">
@@ -63,7 +64,7 @@ export default function Home() {
             <div className="p-5">
               <h3 className="text-lg font-semibold">Podcast Session</h3>
               <p className="mt-2 text-sm text-neutral-600">Our studio is fully ready and available for podcast sessions. Up to 3 persons per podcast session.</p>
-              <Link href="/bookings" className="mt-4 inline-block rounded-lg bg-brand px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-brand-dark">Book now</Link>
+              <a href={whatsappLink("Hello SAE Media, I'd like to book a podcast session.")} target="_blank" rel="noreferrer" className="mt-4 inline-block rounded-lg bg-brand px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white hover:bg-brand-dark">Enquire</a>
             </div>
           </article>
           <article className="overflow-hidden rounded-2xl border border-black/10">

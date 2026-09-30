@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { paystack } from "@/lib/paystack";
-import { serviceById, UPFRONT_PERCENT, TIME_SLOTS } from "@/lib/services";
+import { serviceById, UPFRONT_PERCENT, slotsFor } from "@/lib/services";
 
 type Body = {
   serviceIds: string[]; date: string; time: string;
@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   if (!services.length || services.some((s) => !s)) return NextResponse.json({ error: "Select at least one service." }, { status: 400 });
   if (!/^\d{4}-\d{2}-\d{2}$/.test(b.date ?? "") || new Date(b.date) < new Date(new Date().toDateString()))
     return NextResponse.json({ error: "Choose a valid future date." }, { status: 400 });
-  if (!TIME_SLOTS.includes(b.time)) return NextResponse.json({ error: "Choose a valid time." }, { status: 400 });
+  if (!slotsFor(b.date).includes(b.time)) return NextResponse.json({ error: "Choose a valid time." }, { status: 400 });
   if (!b.name?.trim() || !/^\S+@\S+\.\S+$/.test(b.email ?? "") || (b.phone ?? "").replace(/\D/g, "").length < 10)
     return NextResponse.json({ error: "Enter your name, a valid email and phone number." }, { status: 400 });
 

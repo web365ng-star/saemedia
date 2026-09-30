@@ -2,7 +2,7 @@ export const SITE = {
   name: "SAE Media Solution",
   tagline: "Making memories that last a life times",
   address: "16 Oduola Ogunrinde Ave, Governor's Rd, off Adewale Bus-stop, Ikotun, Lagos",
-  hours: "Mon – Sat: 9am – 6pm | Sun: 2pm - 5pm",
+  hours: "Mon – Sat: 9am – 6pm | Sun: 1pm – 4pm",
   whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "2349112063837",
   socials: {
     instagram: "https://www.instagram.com/saestudios_/",

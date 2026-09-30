@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { naira } from "@/lib/services";
@@ -35,12 +36,12 @@ function Inner({ whatsapp }: { whatsapp: string }) {
     return () => clearTimeout(t);
   }, [wa, seconds]);
 
-  if (failed) return <Box title="We couldn't verify your payment"><p>If you were charged, please message us on WhatsApp with your payment reference and we&apos;ll confirm your booking.</p><Link href="/bookings" className="mt-6 inline-block font-semibold text-brand">← Back to booking</Link></Box>;
+  if (failed) return <Box title="We couldn't verify your payment"><p>If you were charged, please message us on WhatsApp with your payment reference and we&apos;ll confirm your booking.</p><Link href="/bookings" className="mt-6 inline-flex items-center gap-2 font-semibold text-brand"><ArrowLeft size={14} aria-hidden /> Back to booking</Link></Box>;
   if (!r) return <Box title="Confirming your payment…"><p>Please don&apos;t close this page.</p></Box>;
-  if (!r.paid) return <Box title="Payment not completed"><p>Your payment was not successful, so no slot has been reserved.</p><Link href="/bookings" className="mt-6 inline-block font-semibold text-brand">← Try again</Link></Box>;
+  if (!r.paid) return <Box title="Payment not completed"><p>Your payment was not successful, so no slot has been reserved.</p><Link href="/bookings" className="mt-6 inline-flex items-center gap-2 font-semibold text-brand"><ArrowLeft size={14} aria-hidden /> Try again</Link></Box>;
 
   return (
-    <Box title="Booking Confirmed! 🎉">
+    <Box title="Booking Confirmed!" icon={<CheckCircle2 size={44} className="mx-auto mb-3 text-green-600" aria-hidden />}>
       <dl className="mx-auto mt-4 grid max-w-md grid-cols-[110px_1fr] gap-y-2 text-left text-sm">
         <dt className="text-neutral-500">Reference</dt><dd>{r.reference}</dd>
         <dt className="text-neutral-500">Name</dt><dd>{r.customer}</dd>
@@ -55,8 +56,8 @@ function Inner({ whatsapp }: { whatsapp: string }) {
   );
 }
 
-function Box({ title, children }: { title: string; children: React.ReactNode }) {
-  return <div className="mx-auto max-w-xl px-6 py-20 text-center"><h1 className="text-2xl font-bold">{title}</h1><div className="mt-3 text-neutral-600">{children}</div></div>;
+function Box({ title, icon, children }: { title: string; icon?: React.ReactNode; children: React.ReactNode }) {
+  return <div className="mx-auto max-w-xl px-6 py-20 text-center">{icon}<h1 className="text-2xl font-bold">{title}</h1><div className="mt-3 text-neutral-600">{children}</div></div>;
 }
 
 export default function ConfirmedClient({ whatsapp }: { whatsapp: string }) {
