@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Hero from "@/components/Hero";
+import HeroSlider from "@/components/HeroSlider";
 import SocialCta from "@/components/SocialCta";
 import { media } from "@/lib/media";
 import { PHOTO_GALLERIES, TESTIMONIALS, TRAININGS, whatsappLink } from "@/lib/site";
@@ -19,7 +19,7 @@ export default function Home() {
   const t = TRAININGS[0];
   return (
     <>
-      <Hero image="2025/09/Port-1.png" tall />
+      <HeroSlider />
 
       <section className="mx-auto max-w-7xl px-6 py-14">
         <h2 className="mb-8 text-center text-2xl font-bold">Our Services</h2>
